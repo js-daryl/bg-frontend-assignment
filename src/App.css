@@ -2,3 +2,9 @@ label {
   display: block;
   margin-top: 10px;
 }
+.bold-text {
+  font-weight: bold;
+}
+.checked {
+  color: orange;
+}
