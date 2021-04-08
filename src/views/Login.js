@@ -1,12 +1,15 @@
-import React, { useState } from "react";
-import { useHistory } from "react-router-dom";
+import React, { useState, useContext } from "react";
+import { withRouter } from 'react-router-dom'
+
 import AuthService from "../services/auth.service";
+import LocalStorageService from "../services/localstorage.service";
+import UserContext from "../contexts/UserContext";
 
 const Login = props => {
-  const history = useHistory();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
+  const {user, setUser} = useContext(UserContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -14,7 +17,9 @@ const Login = props => {
     setLoading(true);
     AuthService.login(id, password).then(
       (res) => {
-        history.push("/");
+        setLoading(false);
+        setUser(res);
+        props.history.push("/");
       },
       (error) => {
         setLoading(false);
@@ -70,4 +75,4 @@ const Login = props => {
   );
 };
 
-export default Login;
+export default withRouter(Login);

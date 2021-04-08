@@ -12,6 +12,7 @@ const login = (id, password) => {
     .then(({data}) => {
       LocalStorageService.setToken(data.token);
       LocalStorageService.setUser(data.user);
+      return data.user;
     });
 };
 
