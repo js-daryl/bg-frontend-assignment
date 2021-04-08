@@ -1,6 +1,7 @@
 import axios from "./axios";
 
 import { SERVER_URL } from "../config.json";
+import LocalStorageService from "./localstorage.service";
 
 const login = (id, password) => {
   return axios
@@ -8,15 +9,14 @@ const login = (id, password) => {
       email: id,
       password,
     })
-    .then(response => {
-      
-    }, error => {
-
+    .then(({data}) => {
+      LocalStorageService.setToken(data.token);
+      LocalStorageService.setUser(data.user);
     });
 };
 
 const logout = () => {
-  localStorage.removeItem("user");
+  LocalStorageService.clearToken();
 };
 
 const getCurrentUser = () => {
