@@ -1,13 +1,12 @@
 import React, {useContext} from "react";
 import { withRouter } from 'react-router-dom'
 
-import "../styles/navbar.css";
+import "../styles/Navbar.css";
 import UserContext from "../contexts/UserContext";
 import LocalStorageService from "../services/localstorage.service";
 
 const Navbar = props => {
     const {user, setUser} = useContext(UserContext);
-
     const logOut = () => {
         LocalStorageService.clearToken();
         props.history.push("/login");
@@ -22,11 +21,11 @@ const Navbar = props => {
                 <li className="nav-item">
                     <span className="profile">
                         <img
-                            src="//ssl.gstatic.com/accounts/ui/avatar_2x.png"
+                            src={user.picture}
                             alt="profile-img"
                             className="profile-img-card profile-img"
                         />
-                        <label className="profile-name">{user && user.name}</label>
+                        <label className="profile-name">{user.name}</label>
                     </span>
                 </li>
 
