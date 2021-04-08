@@ -3,6 +3,9 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
-.card > img {
-    padding: 1.25rem;
+.carousel-item > img {
+    height: 350px;
+}
+.card {
+    cursor: pointer;
 }
