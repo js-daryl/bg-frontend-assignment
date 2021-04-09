@@ -18,15 +18,19 @@ const Title = () => {
 const Description = () => {
     const {data, mode} = useContext(UnitContext);
     return (
-        <Card.Text
-            className={mode === UnitConstants.LIST_UNIT ? "truncated" : ""}
-        >
-            {data.description}
-        </Card.Text>
+        <>
+            {mode === UnitConstants.LIST_UNIT && <Card.Text className={"truncated"}>
+                {data.description}
+            </Card.Text>}
+
+            {mode === UnitConstants.BOOK_UNIT && <Card.Text 
+                dangerouslySetInnerHTML={ {__html: data.description} } 
+            />}
+        </>
     )
 }
 const Cancellation = () => {
-    const {data, mode} = useContext(UnitContext);
+    const {data, mode} = useContext(UnitContext);   
     return <Card.Text>{data.cancellation}</Card.Text>
 }
 const Price = () => {
@@ -49,7 +53,7 @@ const Rating = () => {
 const Amenities = () => {
     const {data, mode} = useContext(UnitContext);
     const amenitiesReducer = (accumulator, currentValue) => accumulator + ', ' + currentValue;
-    return <Card.Text>
+    return <Card.Text className="amenities">
         <span className="bold-text">Amenities: </span>
         {data.amenities ? data.amenities.reduce(amenitiesReducer) : ""}
     </Card.Text>

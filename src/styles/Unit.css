@@ -35,6 +35,10 @@
     top: 0px;
     color: white;
 }
+.amenities {
+    margin-top: 50px;
+    margin-bottom: 50px;
+}
 .availability button:nth-child(4n) {  
     margin-right: 0px;
 }
