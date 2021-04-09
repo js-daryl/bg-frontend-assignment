@@ -5,6 +5,7 @@ import Button from 'react-bootstrap/Button'
 import "../styles/Home.css"
 import BookModal from "../components/BookModal";
 import UnitsService from "../services/units.service";
+import UnitConstants from "../constants/unit.constants";
 import Unit from "../components/Unit";
 
 const Home = () => {
@@ -37,6 +38,7 @@ const Home = () => {
               <Unit 
                 data={unit}
                 clickUnit={clickUnit}
+                mode={UnitConstants.LIST_UNIT}
               />
             </div>
           )}

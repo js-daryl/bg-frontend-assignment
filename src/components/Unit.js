@@ -5,7 +5,7 @@ import Carousel from 'react-bootstrap/Carousel'
 
 import "../styles/Unit.css";
 import UnitContext from "../contexts/unit.context.";
-import UnitConstant from "../constants/unit.constants";
+import UnitConstants from "../constants/unit.constants";
 
 import PropertyW200 from "../assets/property5-w200.jpg";
 import PropertyW400 from "../assets/property5-w400.jpg";
@@ -19,7 +19,7 @@ const Description = () => {
     const {data, mode} = useContext(UnitContext);
     return (
         <Card.Text
-            className={mode === UnitConstant.LIST_UNIT ? "truncated" : ""}
+            className={mode === UnitConstants.LIST_UNIT ? "truncated" : ""}
         >
             {data.description}
         </Card.Text>
@@ -58,15 +58,16 @@ const Availability = () => {
 
     return <Card.Text>
         {[...Array(8)].map((n, i) =>
-            <span class="badge badge-secondary availability" key={`availability-${i}`}>{2081 + i}</span>
+            <span className="badge badge-secondary availability" key={`availability-${i}`}>{2081 + i}</span>
         )}
     </Card.Text>
 }
 const Unit = ({data, mode, clickUnit}) => {
     const pictures= [PropertyW200, PropertyW400, PropertyW800];
+    console.log('mode', mode)
     return (
         <UnitContext.Provider value={{data, mode}}>
-            <Card onClick={() => clickUnit(data.id)}>
+            <Card onClick={() => clickUnit(data.id)} className={mode}>
                 <Carousel>
                     {pictures.map(picture => 
                         <Carousel.Item key={picture} >
@@ -91,7 +92,6 @@ const Unit = ({data, mode, clickUnit}) => {
 Unit.propTypes = {
     data: PropTypes.shape({
         id: PropTypes.string.isRequired,
-        mode: PropTypes.string,
         name: PropTypes.string.isRequired,
         region: PropTypes.string,
         description: PropTypes.string,
@@ -102,10 +102,11 @@ Unit.propTypes = {
         amenities: PropTypes.array,
         availability: PropTypes.array,
     }),
-    clickUnit: PropTypes.func
+    clickUnit: PropTypes.func,
+    mode: PropTypes.string.isRequired,
+
 }
 Unit.defaultProps = {
     clickUnit: () => void(0),
-    mode: UnitConstant.LIST_UNIT,
 }
 export default Unit;
