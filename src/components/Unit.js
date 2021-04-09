@@ -31,7 +31,9 @@ const Cancellation = () => {
 }
 const Price = () => {
     const {data, mode} = useContext(UnitContext);
-    return <Card.Text className="bold-text">{`${data.price} BTC`}</Card.Text>
+    return <Card.Text className={`bold-text ${mode === UnitConstants.LIST_UNIT ? "" : "highlighted"}`}>
+        {`${data.price} BTC`}
+    </Card.Text>
 }
 const Rating = () => {
     const {data, mode} = useContext(UnitContext);
@@ -72,7 +74,25 @@ const Availability = () => {
 }
 const Unit = ({data, mode, clickUnit}) => {
     const pictures= [PropertyW200, PropertyW400, PropertyW800];
-    console.log('mode', mode)
+    
+    const unitLayout = {
+        [UnitConstants.BOOK_UNIT] : [
+            Title,
+            Rating,
+            Description,
+            Amenities,
+            Availability,
+            Price,
+        ],
+        [UnitConstants.LIST_UNIT] : [
+            Title,
+            Description,
+            Cancellation,
+            Price,
+            Rating,
+        ],
+    }
+    console.log('layout', unitLayout);
     return (
         <UnitContext.Provider value={{data, mode}}>
             <Card onClick={() => clickUnit(data.id)} className={mode}>
@@ -84,13 +104,17 @@ const Unit = ({data, mode, clickUnit}) => {
                     )}
                 </Carousel>
                 <Card.Body>
-                    <Title />
+                    {/* <Title />
                     <Description />
                     <Cancellation />
                     <Price />
                     <Rating />
                     <Amenities />
-                    <Availability />
+                    <Availability /> */}
+                    {unitLayout[mode].map(sub => {
+                        const Sub = sub;
+                        return <Sub key={sub}/>
+                    })}
                 </Card.Body>
             </Card>
         </UnitContext.Provider>
