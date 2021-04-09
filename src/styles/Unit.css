@@ -27,21 +27,19 @@
 .card-text, .card-title {
     font-size: 1.25em;
 }
-.availability {
+
+.availability button:nth-child(4n) {  
+    margin-right: 0px;
+}
+.availability button:nth-child(n + 5) {  
+    margin-bottom: 0px;
+}
+.availability button {
     width: calc(25% - 15px);
     margin-right: 15px;
-    cursor: pointer;
-    border: 1px solid #6c757d;
-    background: none;
-    color: black;
+    margin-bottom: 15px;
 }
-.availability.disabled {
-    opacity: 0.5;
-}
-.availability.selected {
-    background-color: #6c757d;
-    color:white;
-}
-.availability:nth-child(4n) {  
-    margin-right: 0px;
+.availability button.selected {
+    background: black;
+    color: white;
 }
