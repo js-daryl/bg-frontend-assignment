@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
 import "../styles/Home.css"
-import UnitModal from "../components/UnitModal";
+import BookModal from "../components/BookModal";
 import UnitsService from "../services/units.service";
 import Unit from "../components/Unit";
 
@@ -41,7 +41,7 @@ const Home = () => {
             </div>
           )}
       </div>
-      <UnitModal
+      <BookModal
         id={selectedUnit}
         handleCloseModal={handleCloseModal}
         handleBook={handleBook}
