@@ -2,7 +2,7 @@ import React, {useContext} from "react";
 import { withRouter } from 'react-router-dom'
 
 import "../styles/Navbar.css";
-import UserContext from "../contexts/user.context.";
+import UserContext from "../contexts/user.context";
 import LocalStorageService from "../services/localstorage.service";
 
 const Navbar = props => {

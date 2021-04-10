@@ -1,9 +1,9 @@
-import React, {useState, createContext, useEffect} from "react";
+import React, {useState, useEffect} from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
-import UserContext from "./contexts/user.context.";
+import UserContext from "./contexts/user.context";
 import Login from "./views/Login";
 import Home from "./views/Home";
 import Navbar from "./components/Navbar";

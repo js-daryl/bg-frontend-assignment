@@ -1,10 +1,10 @@
-import React, {useContext, useState} from "react";
+import React, { useContext } from "react";
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card'
 import Carousel from 'react-bootstrap/Carousel'
 
 import "../styles/Unit.css";
-import UnitContext from "../contexts/unit.context.";
+import UnitContext from "../contexts/unit.context";
 import UnitConstants from "../constants/unit.constants";
 
 import PropertyW200 from "../assets/property5-w200.jpg";
@@ -41,17 +41,17 @@ const Description = () => {
     )
 }
 const Cancellation = () => {
-    const {data, mode} = useContext(UnitContext);   
+    const {data} = useContext(UnitContext);   
     return <Card.Text>{data.cancellation}</Card.Text>
 }
 const Price = () => {
-    const {data, mode} = useContext(UnitContext);
+    const {data} = useContext(UnitContext);
     return <Card.Text className="bold-text">
         {`${data.price} BTC`}
     </Card.Text>
 }
 const Rating = () => {
-    const {data, mode} = useContext(UnitContext);
+    const {data} = useContext(UnitContext);
     return <Card.Text>
         {[...Array(5)].map((n, i) =>
             <span
@@ -62,7 +62,7 @@ const Rating = () => {
     </Card.Text>
 }
 const Amenities = () => {
-    const {data, mode} = useContext(UnitContext);
+    const {data} = useContext(UnitContext);
     const amenitiesReducer = (accumulator, currentValue) => accumulator + ', ' + currentValue;
     return <Card.Text className="amenities">
         {data.amenities ? data.amenities.reduce(amenitiesReducer) : ""}
@@ -70,7 +70,7 @@ const Amenities = () => {
 }
 const Availability = ({availability, setAvailability}) => {
     const baseYear = 2080;
-    const {data, mode} = useContext(UnitContext);
+    const {data} = useContext(UnitContext);
     const arrayOfYears = data.availability ? data.availability : [];
 
     return <Card.Text className="availability">
