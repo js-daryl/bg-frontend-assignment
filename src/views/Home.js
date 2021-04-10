@@ -12,6 +12,7 @@ const Home = () => {
   const [units, setUnits] = useState([]);
   const [selectedUnit, setSelectedUnit] = useState("");
   const [page, setPage] = useState(1);
+  const [bookedUnits, setBookedUnits] = useState([]);
 
   useEffect( () => {
     UnitsService.listUnits().then(
@@ -24,8 +25,13 @@ const Home = () => {
   const clickUnit = id => {
     setSelectedUnit(id);
   }
-  const handleBook = id => {
-    
+  const handleBook = (id, availability) => {
+    UnitsService.bookunit(id, availability).then(
+      (data) => {
+        setBookedUnits([...bookedUnits, id]);
+        setSelectedUnit("");
+      }
+    )
   }
   const handleCloseModal = () => {
     setSelectedUnit("");
@@ -36,7 +42,7 @@ const Home = () => {
           {units.map( (unit, i) =>
             <div className="col-lg-3 col-md-6" key= {unit.id ? unit.id : i}>
               <Unit 
-                data={unit}
+                data={{...unit, isBooked: bookedUnits.includes(unit.id)}}
                 clickUnit={clickUnit}
                 mode={UnitConstants.LIST_UNIT}
               />

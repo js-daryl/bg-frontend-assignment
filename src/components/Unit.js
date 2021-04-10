@@ -15,7 +15,7 @@ const Title = () => {
     const {data, mode} = useContext(UnitContext);
     return (
         <>
-            {mode === UnitConstants.LIST_UNIT &&  <Card.Text className="bold-text title">
+            {mode === UnitConstants.LIST_UNIT &&  <Card.Text className={`bold-text title ${data.isBooked ? "booked" : ""}`}>
                 {`${data.name} - ${data.region}`}
             </Card.Text>}
 
@@ -138,6 +138,7 @@ Unit.propTypes = {
         pictures: PropTypes.array,
         amenities: PropTypes.array,
         availability: PropTypes.array,
+        isBooked: PropTypes.bool,
     }),
     clickUnit: PropTypes.func,
     mode: PropTypes.string.isRequired,
