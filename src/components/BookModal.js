@@ -10,7 +10,7 @@ import Unit from "./Unit";
 
 const BookModal = ({id, handleCloseModal, handleBook}) => {
     const [data, setData] = useState(null);
-    const [year, setYear] = useState(null);
+    const [availability, setAvailability] = useState(null);
 
     useEffect( () => {
         setData(null);
@@ -18,8 +18,7 @@ const BookModal = ({id, handleCloseModal, handleBook}) => {
             UnitsService.getUnit(id).then(
             (data) => {
                 setData(data);
-            }
-            )
+            })
         }
     }, [id])
 
@@ -30,15 +29,15 @@ const BookModal = ({id, handleCloseModal, handleBook}) => {
                 {data && <Unit 
                         data={data}
                         mode={UnitConstants.BOOK_UNIT}
-                        setYear={setYear}
-                        year={year}
+                        availability={availability}
+                        setAvailability={setAvailability}
                     />
                 }
                 </Modal.Body>
                 <Modal.Footer>
-                {data ? <Button variant="primary" onClick={handleBook}>
-                        Book
-                    </Button>
+                {data ? <Button variant="primary" onClick={() => handleBook(id, availability)} disabled={!availability}>
+                            Book
+                        </Button>
                       : <span className="spinner-border spinner-border-lg"></span>
                 }
                 </Modal.Footer>
