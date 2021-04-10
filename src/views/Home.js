@@ -40,22 +40,22 @@ const Home = () => {
   }
   return (
     <>
-        <InfiniteScroll
-          loadMore={handleLoadMore}
-          hasMore={hasNextPage}
-        >
-          <div className="row">
-            {units.map( (unit, i) =>
-              <div className="col-lg-3 col-md-6" key= {unit.id ? unit.id : i}>
-                <Unit 
-                  data={{...unit, isBooked: bookedUnits.includes(unit.id)}}
-                  clickUnit={() => setSelectedUnit(unit.id)}
-                  mode={UnitConstants.LIST_UNIT}
-                />
-              </div>
-            )}
-          </div>
-        </InfiniteScroll>
+      <InfiniteScroll
+        loadMore={handleLoadMore}
+        hasMore={hasNextPage}
+      >
+        <div className="row">
+          {units.map( (unit, i) =>
+            <div className="col-lg-3 col-md-6" key= {unit.id ? unit.id : i}>
+              <Unit 
+                data={{...unit, isBooked: bookedUnits.includes(unit.id)}}
+                clickUnit={() => setSelectedUnit(unit.id)}
+                mode={UnitConstants.LIST_UNIT}
+              />
+            </div>
+          )}
+        </div>
+      </InfiniteScroll>
       <BookModal
         id={selectedUnit}
         handleCloseModal={handleCloseModal}
