@@ -2,11 +2,11 @@ import axios from "./axios";
 
 import { SERVER_URL } from "../config.json";
 
-const listUnits = () => {
+const listUnits = (page, perPage) => {
   return axios
-    .get(`${SERVER_URL}/units`)
+    .get(`${SERVER_URL}/units?page=${page}&perPage=${perPage}`)
     .then(({data}) => {
-      return data.data;
+      return data;
     });
 };
 const getUnit = id => {
@@ -26,6 +26,7 @@ const bookunit = (unitId, year) => {
       return data;
     });
 };
+
 export default {
   listUnits,
   getUnit,
