@@ -23,29 +23,26 @@ const BookModal = ({id, handleCloseModal, handleBook}) => {
         }
     }, [id])
 
-    const handleBook = () => {
-
-    }
-    
     return (
         <>
-            {data &&
-                <Modal show={!!id} onHide={handleCloseModal} animation={true}>
-                    <Modal.Body>
-                        <Unit 
-                            data={data}
-                            mode={UnitConstants.BOOK_UNIT}
-                            setYear={setYear}
-                            year={year}
-                        />
-                    </Modal.Body>
-                    <Modal.Footer>
-                        <Button variant="primary" onClick={handleBook}>
-                            Book
-                        </Button>
-                    </Modal.Footer>
-                </Modal>
-            }
+            <Modal show={!!id} onHide={handleCloseModal} animation={true}>
+                <Modal.Body>
+                {data && <Unit 
+                        data={data}
+                        mode={UnitConstants.BOOK_UNIT}
+                        setYear={setYear}
+                        year={year}
+                    />
+                }
+                </Modal.Body>
+                <Modal.Footer>
+                {data ? <Button variant="primary" onClick={handleBook}>
+                        Book
+                    </Button>
+                      : <span className="spinner-border spinner-border-lg"></span>
+                }
+                </Modal.Footer>
+            </Modal>
         </>
     )
 }

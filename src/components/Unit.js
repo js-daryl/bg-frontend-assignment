@@ -61,8 +61,9 @@ const Amenities = () => {
 const Availability = () => {
     const baseYear = 2080;
     const {data, mode} = useContext(UnitContext);
-
+    const [availability, setAvailability] = useState(null);
     const arrayOfYears = data.availability ? data.availability : [];
+
     return <Card.Text className="availability">
         {[...Array(8)].map((n, i) =>
             <button
@@ -96,7 +97,6 @@ const Unit = ({data, mode, clickUnit}) => {
             Rating,
         ],
     }
-    console.log('layout', unitLayout);
     return (
         <UnitContext.Provider value={{data, mode}}>
             <Card onClick={() => clickUnit(data.id)} className={mode}>

@@ -8,3 +8,6 @@
 .modal-dialog .modal-content {
     height: 100%;
 }
+.modal-footer{
+    background-color: white;
+}
