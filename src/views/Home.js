@@ -29,7 +29,7 @@ const Home = () => {
     UnitsService.bookunit(id, availability).then(
       (data) => {
         setBookedUnits([...bookedUnits, id]);
-        setSelectedUnit("");
+        handleCloseModal();
       }
     )
   }

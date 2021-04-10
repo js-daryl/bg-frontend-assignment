@@ -14,6 +14,7 @@ const BookModal = ({id, handleCloseModal, handleBook}) => {
 
     useEffect( () => {
         setData(null);
+        setAvailability(null);
         if(id) {
             UnitsService.getUnit(id).then(
             (data) => {
