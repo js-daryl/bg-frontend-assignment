@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
+import "../styles/BookModal.css";
 import UnitsService from "../services/units.service";
 import UnitConstants from "../constants/unit.constants";
 
