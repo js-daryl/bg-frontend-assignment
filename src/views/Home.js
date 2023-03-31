@@ -18,16 +18,18 @@ const Home = () => {
   
 
   return (
-    <div className="units-container">
-      <CardDeck> 
-        {units.map( (unit, i) => 
-          <Unit 
-            key= {unit.id ? unit.id : i}
-            data={unit} 
-          />
-        )}
-      </CardDeck>
-    </div>
+    <>
+      <div className="row">
+          {units.map( (unit, i) =>
+            <div class="col-md-4 col-xs-6">
+              <Unit 
+                key= {unit.id ? unit.id : i}
+                data={unit} 
+              />
+            </div>
+          )}
+      </div>
+    </>
   );
 };
 
