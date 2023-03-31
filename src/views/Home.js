@@ -16,15 +16,18 @@ const Home = () => {
     )
   }, [])
   
+  const clickUnit = id => {
+
+  }
 
   return (
     <>
       <div className="row">
           {units.map( (unit, i) =>
-            <div class="col-md-4 col-xs-6">
+            <div className="col-md-4 col-xs-6" key= {unit.id ? unit.id : i}>
               <Unit 
-                key= {unit.id ? unit.id : i}
-                data={unit} 
+                data={unit}
+                clickUnit={clickUnit}
               />
             </div>
           )}

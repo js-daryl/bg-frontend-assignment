@@ -3,3 +3,6 @@
     overflow: hidden;
     text-overflow: ellipsis;
 }
+.card > img {
+    padding: 1.25rem;
+}
