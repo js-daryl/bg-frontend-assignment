@@ -1,29 +1,36 @@
-import React from "react";
+import React, {useState, createContext, useEffect} from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "./App.css";
 
-import Login from "./components/Login";
-import Home from "./components/Home";
+import UserContext from "./contexts/UserContext";
+import Login from "./views/Login";
+import Home from "./views/Home";
+import Navbar from "./components/Navbar";
 
 import LocalStorageService from "./services/localstorage.service";
 
 const App = () => {
+  const [user, setUser] = useState(null);
+  const userContext = {user, setUser};
+  useEffect( () => {
+    setUser(LocalStorageService.getUser());
+  }, [])
 
   return (
-    <div>
+    <UserContext.Provider value={ {user: user, setUser: setUser} }>
+      {user && <Navbar />}
       <div className="container mt-3">
         <Switch>
           <Route exact path="/"> 
-            {LocalStorageService.isLoggedIn() ? <Home /> : <Redirect to="/login" />}
+            {user ? <Home /> : <Redirect to="/login" />}
           </Route>
           <Route exact path="/login"> 
-            <Login />
-            {/* {LocalStorageService.isLoggedIn() ? <Redirect to="/" /> : <Login /> } */}
+            {user ? <Redirect to="/" /> : <Login /> }
           </Route>
         </Switch>
       </div>
-    </div>
+    </UserContext.Provider>
   );
 };
 
