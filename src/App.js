@@ -1,40 +1,34 @@
-import React, { useState, useEffect } from "react";
-import { Switch, Route, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import React, {useState, useEffect} from "react";
+import { Switch, Route, Redirect } from "react-router-dom";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
-import Login from "./components/Login";
-import Home from "./components/Home";
+import UserContext from "./contexts/user.context";
+import Login from "./views/Login";
+import Home from "./views/Home";
+import Navbar from "./components/Navbar";
+import PrivateRoute from "./components/PrivateRoute";
+import AuthRoute from "./components/AuthRoute";
+
+import LocalStorageService from "./services/localstorage.service";
 
 const App = () => {
+  const [user, setUser] = useState(null);
+  const userContext = {user, setUser};
+  useEffect( () => {
+    setUser(LocalStorageService.getUser());
+  }, [])
 
   return (
-    <div>
-      <nav className="navbar navbar-expand navbar-dark bg-dark">
-        <div className="navbar-nav mr-auto">
-          <li className="nav-item">
-            <Link to={"/home"} className="nav-link">
-              Home
-            </Link>
-          </li>
-        </div>
-
-        <div className="navbar-nav ml-auto">
-          <li className="nav-item">
-            <Link to={"/login"} className="nav-link">
-              Login
-            </Link>
-          </li>
-        </div>
-      </nav>
-
-      <div className="container mt-3">
+    <UserContext.Provider value={ userContext }>
+      {user && <Navbar />}
+      <div className="container-fluid">
         <Switch>
-          <Route exact path={["/", "/home"]} component={Home} />
-          <Route exact path="/login" component={Login} />
+          <PrivateRoute exact path="/" component={Home} />
+          <AuthRoute exact path="/login" component={Login} />
         </Switch>
       </div>
-    </div>
+    </UserContext.Provider>
   );
 };
 

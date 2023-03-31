@@ -1,14 +1,6 @@
-## React Hooks: JWT Authentication (without Redux) example
-
-
-### Set port
-.env
-```
-PORT=
-```
-
+## React Hooks, JWT, Bootstrap
 ### Set API endpoint
-.env
+config.json
 ```
 API_URL=
 ```
@@ -23,7 +15,7 @@ npm install
 yarn install
 ```
 
-or
+or8081
 
 ### Compiles and hot-reloads for development
 

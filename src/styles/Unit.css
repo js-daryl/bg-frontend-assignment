@@ -1,0 +1,75 @@
+.book_unit .description::before {
+    content: "Description: ";
+    font-weight: bold;
+    font-style: italic;
+}
+.card-text.title {
+    display: flex;
+    justify-content: space-between;
+}
+.book_unit .card-text.title span:last-of-type{
+    background-color: black;
+    color: white;
+    padding: 3px;
+    text-align: center;
+}
+.list_unit .card-text.title.booked::after {
+    content: "You just booked it!";
+    font-style: italic;
+    color: red;
+    font-size: 0.5em;
+}
+.description.truncated {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.carousel-item > img {
+    height: 350px;
+}
+.card {
+    padding: 0px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+.card.book_unit {
+    margin: 0px;
+}
+.card.list_unit{
+    cursor: pointer;
+}
+.card-body {
+    padding: 0px;
+    position: relative;
+}
+.carousel {
+    border-radius: 10px;
+    margin-bottom: 15px;
+}
+.list_unit > .carousel {
+    border: 1px solid lightgray;
+    padding: 0.5em 1em;
+}
+.card-text, .card-title {
+    font-size: 1.25em;
+}
+.amenities:before {
+    content: "Amenities: ";
+    font-weight: bold;
+}
+.availability button:nth-child(4n) {  
+    margin-right: 0px;
+}
+.availability button:nth-child(n + 5) {  
+    margin-bottom: 0px;
+}
+.availability button {
+    width: calc(25% - 15px);
+    margin-right: 15px;
+    margin-bottom: 15px;
+}
+.availability button.selected {
+    background: black;
+    color: white;
+}
