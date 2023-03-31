@@ -20,12 +20,7 @@ const logout = () => {
   LocalStorageService.clearToken();
 };
 
-const getCurrentUser = () => {
-  return JSON.parse(localStorage.getItem("user"));
-};
-
 export default {
   login,
   logout,
-  getCurrentUser,
 };
