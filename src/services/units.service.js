@@ -16,8 +16,18 @@ const getUnit = id => {
       return data;
     });
 };
-
+const bookunit = ({id, year}) => {
+  return axios
+    .post(`${SERVER_URL}/units/book`, {
+      unitId: id,
+      year
+    })
+    .then(({data}) => {
+      return data;
+    });
+};
 export default {
   listUnits,
-  getUnit
+  getUnit,
+  bookunit
 };

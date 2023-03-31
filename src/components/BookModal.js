@@ -10,6 +10,7 @@ import Unit from "./Unit";
 
 const BookModal = ({id, handleCloseModal, handleBook}) => {
     const [data, setData] = useState(null);
+    const [year, setYear] = useState(null);
 
     useEffect( () => {
         setData(null);
@@ -22,6 +23,10 @@ const BookModal = ({id, handleCloseModal, handleBook}) => {
         }
     }, [id])
 
+    const handleBook = () => {
+
+    }
+    
     return (
         <>
             {data &&
@@ -30,6 +35,8 @@ const BookModal = ({id, handleCloseModal, handleBook}) => {
                         <Unit 
                             data={data}
                             mode={UnitConstants.BOOK_UNIT}
+                            setYear={setYear}
+                            year={year}
                         />
                     </Modal.Body>
                     <Modal.Footer>

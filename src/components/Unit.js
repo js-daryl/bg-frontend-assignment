@@ -61,7 +61,7 @@ const Amenities = () => {
 const Availability = () => {
     const baseYear = 2080;
     const {data, mode} = useContext(UnitContext);
-    const [availability, setAvailability] = useState(null);
+
     const arrayOfYears = data.availability ? data.availability : [];
     return <Card.Text className="availability">
         {[...Array(8)].map((n, i) =>
