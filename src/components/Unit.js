@@ -53,12 +53,20 @@ const Amenities = () => {
     </Card.Text>
 }
 const Availability = () => {
+    const baseYear = 2080;
     const {data, mode} = useContext(UnitContext);
     const [availability, setAvailability] = useState(null);
-
-    return <Card.Text>
+    const arrayOfYears = data.availability ? data.availability : [];
+    return <Card.Text className="availability">
         {[...Array(8)].map((n, i) =>
-            <span className="badge badge-secondary availability" key={`availability-${i}`}>{2081 + i}</span>
+            <button
+                disabled = {arrayOfYears.includes(baseYear + (i + 1))}
+                key={`availability-${i}`}
+                onClick={() => setAvailability(baseYear + (i + 1))}
+                className={baseYear + (i + 1) === availability ? "selected" : ""}
+            >
+                {baseYear + (i + 1)}
+            </button>
         )}
     </Card.Text>
 }
