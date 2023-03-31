@@ -1,4 +1,4 @@
-import React, {useContext} from "react";
+import React, {useContext, useState} from "react";
 import PropTypes from 'prop-types';
 import Card from 'react-bootstrap/Card'
 import Carousel from 'react-bootstrap/Carousel'
@@ -36,10 +36,10 @@ const Price = () => {
 const Rating = () => {
     const {data, mode} = useContext(UnitContext);
     return <Card.Text>
-        {[1,2,3,4,5].map(n =>
+        {[...Array(5)].map((n, i) =>
             <span
-                className={`fa fa-star ${n > data.rating ? "": "checked"}`}
-                key={`rating-${n}`}
+                className={`fa fa-star ${i + 1 > data.rating ? "": "checked"}`}
+                key={`rating-${i}`}
             />
         )}
     </Card.Text>
@@ -50,6 +50,16 @@ const Amenities = () => {
     return <Card.Text>
         <span className="bold-text">Amenities: </span>
         {data.amenities ? data.amenities.reduce(amenitiesReducer) : ""}
+    </Card.Text>
+}
+const Availability = () => {
+    const {data, mode} = useContext(UnitContext);
+    const [availability, setAvailability] = useState(null);
+
+    return <Card.Text>
+        {[...Array(8)].map((n, i) =>
+            <span class="badge badge-secondary availability" key={`availability-${i}`}>{2081 + i}</span>
+        )}
     </Card.Text>
 }
 const Unit = ({data, mode, clickUnit}) => {
@@ -71,6 +81,7 @@ const Unit = ({data, mode, clickUnit}) => {
                     <Price />
                     <Rating />
                     <Amenities />
+                    <Availability />
                 </Card.Body>
             </Card>
         </UnitContext.Provider>
