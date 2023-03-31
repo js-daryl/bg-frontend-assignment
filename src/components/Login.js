@@ -24,7 +24,7 @@ const Login = props => {
 
     setLoading(true);
     AuthService.login(id, password).then(
-      () => {
+      (res) => {
         props.history.push("/home");
       },
       (error) => {
