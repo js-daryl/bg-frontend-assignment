@@ -12,6 +12,9 @@
     border: none;
     box-shadow: none;
 }
+.card.book_unit {
+    margin: 0px;
+}
 .card.list_unit{
     cursor: pointer;
 }
@@ -20,9 +23,11 @@
     position: relative;
 }
 .carousel {
-    border: 1px solid lightgray;
     border-radius: 10px;
     margin-bottom: 15px;
+}
+.list_unit > .carousel {
+    border: 1px solid lightgray;
     padding: 0.5em 1em;
 }
 .card-text, .card-title {
@@ -34,10 +39,10 @@
     right: 0px;
     top: 0px;
     color: white;
+    padding: 5px;
 }
 .amenities {
-    margin-top: 50px;
-    margin-bottom: 50px;
+
 }
 .availability button:nth-child(4n) {  
     margin-right: 0px;
