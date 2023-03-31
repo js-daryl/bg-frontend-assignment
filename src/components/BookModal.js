@@ -3,7 +3,7 @@ import Modal from 'react-bootstrap/Modal'
 import Button from 'react-bootstrap/Button'
 
 import UnitsService from "../services/units.service";
-import UnitConstant from "../constants/unit.constants";
+import UnitConstants from "../constants/unit.constants";
 
 import Unit from "./Unit";
 
@@ -28,7 +28,7 @@ const BookModal = ({id, handleCloseModal, handleBook}) => {
                     <Modal.Body>
                         <Unit 
                             data={data}
-                            mode={UnitConstant.LIST_UNIT}
+                            mode={UnitConstants.BOOK_UNIT}
                         />
                     </Modal.Body>
                     <Modal.Footer>
