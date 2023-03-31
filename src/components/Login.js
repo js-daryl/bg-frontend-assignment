@@ -1,23 +1,12 @@
 import React, { useState } from "react";
-import Form from "react-validation/build/form";
-import Input from "react-validation/build/input";
-
+import { useHistory } from "react-router-dom";
 import AuthService from "../services/auth.service";
 
 const Login = props => {
+  const history = useHistory();
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-
-  const onChangeId = (e) => {
-    const id = e.target.value;
-    setId(id);
-  };
-
-  const onChangePassword = (e) => {
-    const password = e.target.value;
-    setPassword(password);
-  };
 
   const handleLogin = (e) => {
     e.preventDefault();
@@ -25,7 +14,7 @@ const Login = props => {
     setLoading(true);
     AuthService.login(id, password).then(
       (res) => {
-        props.history.push("/home");
+        history.push("/");
       },
       (error) => {
         setLoading(false);
@@ -42,26 +31,27 @@ const Login = props => {
           className="profile-img-card"
         />
 
-        <Form onSubmit={handleLogin}>
+        <form onSubmit={handleLogin}>
           <div className="form-group">
-            <Input
+            <input
               type="text"
               className="form-control"
               placeholder="Colonist ID"
               name="id"
               value={id}
-              onChange={onChangeId}
+              onChange={(ev) => setId(ev.target.value)}
             />
           </div>
 
           <div className="form-group">
-            <Input
+            <input
               type="password"
               className="form-control"
               placeholder="Password"
+              required
               name="password"
               value={password}
-              onChange={onChangePassword}
+              onChange={(ev) => setPassword(ev.target.value)}
             />
           </div>
 
@@ -74,7 +64,7 @@ const Login = props => {
             </button>
           </div>
 
-        </Form>
+        </form>
       </div>
     </div>
   );
