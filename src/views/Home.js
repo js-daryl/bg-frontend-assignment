@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import InfiniteScroll from 'react-infinite-scroller';
 
 
@@ -32,7 +32,7 @@ const Home = () => {
     UnitsService.listUnits(pagenum, UNITS_PER_PAGE).then(
       (data) => {
         setUnits([...units, ...data.data]);
-        setHasNextPage(data.meta.totalCount > pagenum * UNITS_PER_PAGE);
+        setHasNextPage(data.meta.totalCount > (pagenum - 1) * UNITS_PER_PAGE);
       }
     )
   }
@@ -41,7 +41,7 @@ const Home = () => {
         <InfiniteScroll
           pageStart={1}
           loadMore={handleLoadMore}
-          hasMore={true}
+          hasMore={hasNextPage}
         >
           <div className="row">
             {units.map( (unit, i) =>
