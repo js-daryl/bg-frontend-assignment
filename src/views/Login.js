@@ -42,6 +42,7 @@ const Login = props => {
               type="text"
               className="form-control"
               placeholder="Colonist ID"
+              required
               name="id"
               value={id}
               onChange={(ev) => setId(ev.target.value)}
