@@ -1,4 +1,4 @@
-.truncate-description {
+.truncated {
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -8,4 +8,20 @@
 }
 .card {
     cursor: pointer;
+    padding: 0px;
+    background: none;
+    border: none;
+    box-shadow: none;
+}
+.card-body {
+    padding: 0px;
+}
+.carousel {
+    border: 1px solid lightgray;
+    border-radius: 10px;
+    margin-bottom: 15px;
+    padding: 0.5em 1em;
+}
+.card-text, .card-title {
+    font-size: 1.25em;
 }
