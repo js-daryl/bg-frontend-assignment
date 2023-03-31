@@ -16,11 +16,11 @@ const getUnit = id => {
       return data;
     });
 };
-const bookunit = ({id, year}) => {
+const bookunit = (unitId, year) => {
   return axios
     .post(`${SERVER_URL}/units/book`, {
-      unitId: id,
-      year
+      unitId,
+      year,
     })
     .then(({data}) => {
       return data;

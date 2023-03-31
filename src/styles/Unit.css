@@ -3,7 +3,7 @@
     font-weight: bold;
     font-style: italic;
 }
-.book_unit .card-text.title {
+.card-text.title {
     display: flex;
     justify-content: space-between;
 }
@@ -12,6 +12,12 @@
     color: white;
     padding: 3px;
     text-align: center;
+}
+.list_unit .card-text.title.booked::after {
+    content: "You just booked it!";
+    font-style: italic;
+    color: red;
+    font-size: 0.5em;
 }
 .description.truncated {
     white-space: nowrap;
