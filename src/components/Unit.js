@@ -13,17 +13,28 @@ import PropertyW800 from "../assets/property5-w800.jpg";
 
 const Title = () => {
     const {data, mode} = useContext(UnitContext);
-    return <Card.Title className="bold-text">{`${data.name} - ${data.region}`}</Card.Title>
+    return (
+        <>
+            {mode === UnitConstants.LIST_UNIT &&  <Card.Text className="bold-text title">
+                {`${data.name} - ${data.region}`}
+            </Card.Text>}
+
+            {mode === UnitConstants.BOOK_UNIT && <Card.Text className="bold-text title">
+                <span>{`${data.name} - ${data.region}`}</span>
+                <span>{`${data.price} BTC`}</span>
+            </Card.Text>}
+        </>
+    )
 }
 const Description = () => {
     const {data, mode} = useContext(UnitContext);
     return (
         <>
-            {mode === UnitConstants.LIST_UNIT && <Card.Text className={"truncated"}>
+            {mode === UnitConstants.LIST_UNIT && <Card.Text className={"description truncated"}>
                 {data.description}
             </Card.Text>}
 
-            {mode === UnitConstants.BOOK_UNIT && <Card.Text 
+            {mode === UnitConstants.BOOK_UNIT && <Card.Text className={"description"}
                 dangerouslySetInnerHTML={ {__html: data.description} } 
             />}
         </>
@@ -35,7 +46,7 @@ const Cancellation = () => {
 }
 const Price = () => {
     const {data, mode} = useContext(UnitContext);
-    return <Card.Text className={`bold-text ${mode === UnitConstants.LIST_UNIT ? "" : "highlighted"}`}>
+    return <Card.Text className="bold-text">
         {`${data.price} BTC`}
     </Card.Text>
 }
@@ -54,14 +65,12 @@ const Amenities = () => {
     const {data, mode} = useContext(UnitContext);
     const amenitiesReducer = (accumulator, currentValue) => accumulator + ', ' + currentValue;
     return <Card.Text className="amenities">
-        <span className="bold-text">Amenities: </span>
         {data.amenities ? data.amenities.reduce(amenitiesReducer) : ""}
     </Card.Text>
 }
-const Availability = () => {
+const Availability = ({availability, setAvailability}) => {
     const baseYear = 2080;
     const {data, mode} = useContext(UnitContext);
-    const [availability, setAvailability] = useState(null);
     const arrayOfYears = data.availability ? data.availability : [];
 
     return <Card.Text className="availability">
@@ -77,24 +86,22 @@ const Availability = () => {
         )}
     </Card.Text>
 }
-const Unit = ({data, mode, clickUnit}) => {
-    const pictures= [PropertyW200, PropertyW400, PropertyW800];
-    
+const Unit = ({data, mode, clickUnit, availability, setAvailability}) => {
+    const pictures= [PropertyW200, PropertyW400, PropertyW800];    
     const unitLayout = {
         [UnitConstants.BOOK_UNIT] : [
-            Title,
-            Rating,
-            Description,
-            Amenities,
-            Availability,
-            Price,
+            {child: Title},
+            {child: Rating},
+            {child: Description},
+            {child: Amenities},
+            {child: Availability, childProps: {availability, setAvailability}},
         ],
         [UnitConstants.LIST_UNIT] : [
-            Title,
-            Description,
-            Cancellation,
-            Price,
-            Rating,
+            {child: Title},
+            {child: Description},
+            {child: Cancellation},
+            {child: Price},
+            {child: Rating},
         ],
     }
     return (
@@ -108,16 +115,10 @@ const Unit = ({data, mode, clickUnit}) => {
                     )}
                 </Carousel>
                 <Card.Body>
-                    {/* <Title />
-                    <Description />
-                    <Cancellation />
-                    <Price />
-                    <Rating />
-                    <Amenities />
-                    <Availability /> */}
                     {unitLayout[mode].map(sub => {
-                        const Sub = sub;
-                        return <Sub key={sub}/>
+                        const Sub = sub.child;
+                        const childProps = sub.childProps ? {...sub.childProps} : null;
+                        return <Sub key={sub.child} {...childProps} />
                     })}
                 </Card.Body>
             </Card>
@@ -144,5 +145,9 @@ Unit.propTypes = {
 }
 Unit.defaultProps = {
     clickUnit: () => void(0),
+}
+
+Availability.propTypes = {
+    setAvailability: PropTypes.func.isRequired,
 }
 export default Unit;
