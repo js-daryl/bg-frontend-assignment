@@ -1,6 +1,6 @@
 import React, {useState, createContext, useEffect} from "react";
 import { Switch, Route, Redirect } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.min.css";
+import 'bootstrap/dist/css/bootstrap.min.css';
 import "./App.css";
 
 import UserContext from "./contexts/UserContext";
@@ -20,7 +20,7 @@ const App = () => {
   return (
     <UserContext.Provider value={ {user: user, setUser: setUser} }>
       {user && <Navbar />}
-      <div className="container mt-3">
+      <div className="container-fluid">
         <Switch>
           <Route exact path="/"> 
             {user ? <Home /> : <Redirect to="/login" />}

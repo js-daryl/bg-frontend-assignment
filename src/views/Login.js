@@ -2,14 +2,13 @@ import React, { useState, useContext } from "react";
 import { withRouter } from 'react-router-dom'
 
 import AuthService from "../services/auth.service";
-import LocalStorageService from "../services/localstorage.service";
 import UserContext from "../contexts/UserContext";
 
 const Login = props => {
   const [id, setId] = useState("");
   const [password, setPassword] = useState("");
   const [loading, setLoading] = useState(false);
-  const {user, setUser} = useContext(UserContext);
+  const {setUser} = useContext(UserContext);
 
   const handleLogin = (e) => {
     e.preventDefault();
